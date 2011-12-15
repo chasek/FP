@@ -1,0 +1,17 @@
+#header{
+  background-color: grey;
+  height: 55px;
+}
+
+#header_links{
+  text-align: right;
+}
+
+#box{
+  background-color: #CCFFFF;
+  border: 2px solid black;
+}
+
+#box_title{
+  border-bottom: 1px solid black;
+}

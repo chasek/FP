@@ -1,0 +1,37 @@
+<h1>Listing users</h1>
+
+<%= will_paginate %>
+
+<table>
+  <tr>
+    <th></th>
+    <th>Username</th>
+    <th>First name</th>
+    <th>Last name</th>
+    <th>Email</th>
+    <th>Active</th>
+    <th>Admin</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @users.each do |user| %>
+  <tr>
+    <td><%= gravatar_for user, :size => 30 %>
+    <td><%= link_to "#{user.username}", user, :title => "View Profile" %></td>
+    <td><%= user.first_name %></td>
+    <td><%= user.last_name %></td>
+    <td><%= user.email %></td>
+    <td><%= user.active %></td>
+    <td><%= user.admin %></td>
+    <td><%= link_to 'Edit', edit_user_path(user) %></td>
+    <td><%= link_to "delete", user, :confirm => 'Are you sure?', :method => :delete, :title => "Delete #{user.username}" %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= will_paginate %>
+
+<br />
+
+<%= link_to 'New User', new_user_path %>

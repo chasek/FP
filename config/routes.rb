@@ -1,4 +1,34 @@
 FP::Application.routes.draw do
+  get "sessions/new"
+
+  #resources :posts
+
+  #resources :topics
+
+  resources :forums do
+    resources :topics do
+      resources :posts
+    end
+  end
+
+  #resources :reviews
+
+  resources :books do
+    resources :reviews
+  end
+
+  resources :users
+
+  resources :articles
+
+  root :to => 'pages#home'
+
+  resources :sessions, :only => [:new, :create, :destroy]
+
+  match '/signup',  :to => 'users#new'
+  match '/signin',  :to => 'sessions#new'
+  match '/signout', :to => 'sessions#destroy'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

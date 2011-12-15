@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Description:</b>
+  <%= @book.description %>
+</p>
+
+<% if !@book.subjects.empty? %>
+<p>
+  <b>Subjects:</b>
+  <%= @book.subjects %>
+</p>
+<% end %>
+
+<% if signed_in? %>
+<% if current_user.admin? %>
+<p>
+  <b>Views:</b>
+  <%= @book.views %>
+</p>
+<% end %>
+<% end %>
+
+
+<%= link_to 'Forum', forum_path(@forum) %> |
+<% if signed_in? %>
+<% if current_user.admin? %>
+<%= link_to 'Edit', edit_book_path(@book) %> |
+<% end %>
+<% end %>
+<%= link_to 'Back', books_path %>

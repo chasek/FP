@@ -2,13 +2,56 @@
 <html>
 <head>
   <title>FP</title>
-  <%= stylesheet_link_tag :all %>
+  <%# stylesheet_link_tag :all %>
+  <%= stylesheet_link_tag "/stylesheets/custom.css" %>
+  <%= stylesheet_link_tag "http://twitter.github.com/bootstrap/1.4.0/bootstrap.css", :media => 'screen' %>
   <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tag %>
+  <link href="images/favicon.ico" rel="shortcut icon">
+  <link href="images/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="images/apple-touch-icon-72x72.png" sizes="72x72" rel="apple-touch-icon">
+  <link href="images/apple-touch-icon-114x114.png" sizes="114x114" rel="apple-touch-icon">
 </head>
-<body>
+  <body>
+  <div class="topbar">
+  <div class="fill">
+    <div class="container">
+      <a class="brand" href="<%= root_path %>">Books.com</a>
+      <ul class="nav">
+        <% if signed_in? %>
+        <li><%= link_to "Profile", current_user %></li>
+        <% end %>
+      </ul>
+      <ul class="nav secondary-nav">
+        <li><%= link_to "Books", books_path %></li>
+        <% if signed_in? %>
+        <% if current_user.admin? %>
+        <li><a href="<%= users_path %>">View Users</a></li>
+        <li><a href="<%= new_book_path %>">Add Book</a></li>
+        <li><a href="<%= new_article_path %>">Add News</a></li>
+        <% end %>
+        <li><a class="btn primary small" href="<%= signout_path %>">Sign out</a></li>
+        <% else %>
+        <li><a class="btn primary small" href="<%= signin_path %>">Sign in</a></li>
+        <li><a class="btn primary small" href="<%= signup_path %>">Sign up</a></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  </div>
 
-<%= yield %>
+  <div class="container">
+    <div class="content">
+      <div class="page-header">
+        <br />
+        <br />
+        <br />
+        <h1><%= @title %></h1>
+      </div
 
-</body>
+    <%= yield %>
+
+    </div>
+  </div>
+  </body>
 </html>

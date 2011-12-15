@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<% @topics.each do |topic| %>
+  <%# author = User.where({:id => topic.user_id}) %>
+  <div id="box">
+    <div id="box_title"><h5><%= link_to "#{topic.title}", forum_topic_path(topic) %></h5></div>
+    <%# Author: %>
+  </div>
+  <br />
+<% end %>
+
+
+<%= link_to 'New Topic', new_forum_topic_path(@forum) %>
+<%# link_to 'Edit', edit_forum_path(@forum) %> |
+<%# link_to 'Back', forums_path %>
